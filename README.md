@@ -8,8 +8,12 @@ The objective is to return the producers with closest and farest consecutive win
 
 ## Running the application
 To run the apllication, run the following command at the root folder:
-```mvnw spring-boot:run```
+```
+mvnw spring-boot:run
+```
 
 ## Running tests
 To run the apllication tests, run the following command at the root folder:
-```mvnw test```
+```
+mvnw test
+```
