@@ -24,8 +24,8 @@ The data will be returned in a JSON format, including the following values:
 The objects within the array will have the following structure:
 - producer: the producer's name;
 - interval: the interval in year between the awards;
-- previousWin: the year where the producer won the first previous award;
-- followingWin: the year where the producer won the next award
+- previousWin: the year when the producer won the previous award;
+- followingWin: the year when the producer won the next award
 
 ## Running tests
 To run the apllication tests, run the following command at the root folder:
