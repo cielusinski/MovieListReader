@@ -11,7 +11,7 @@ To run the apllication, run the following command at the root folder:
 ```
 mvnw spring-boot:run
 ```
-The application will start listening to port `8080`
+The application will start listening to port `8080`. 
 The endpoint to retirieve the data is:
 ```
 http://localhost:8080/producers
