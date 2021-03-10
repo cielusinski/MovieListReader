@@ -52,15 +52,19 @@ public class FileProcessor  {
 		}
 	}
 	
+	// inserts the movie into DB and returns the id for following actions
 	private static int insertMovie(Movie movie) throws SQLException {
 		DataBaseAccess.insertMovie(movie.year, movie.getEscapedTitle(), movie.getEscapedStudios(), movie.winner);
 		return DataBaseAccess.getMovieId(movie.getEscapedTitle(), movie.year);
 	}
 	
+	// processes the producers' info from the list and insert them into DB
+	// and makes the relation between producers and movies
 	private static void processProducersInfo(String producers, int movieId) throws SQLException {
 		String[] producersArray = producers.split(",");
 		String producerName;
 		
+		// processing producers' string into individual names
 		for(int i = 0; i < producersArray.length; i++) {
 			producerName = producersArray[i].trim();
 			if(i == producersArray.length -1) {
@@ -83,6 +87,7 @@ public class FileProcessor  {
 		}
 	}
 	
+	// inserts producer, retrieves it's id and create relation with movies
 	private static void insertProducer(int movieId, String producerName) throws SQLException {
 		DataBaseAccess.insertProducer(producerName);
 		int producerId = DataBaseAccess.getProducerId(producerName);
@@ -90,6 +95,8 @@ public class FileProcessor  {
 	}
 }
 
+// auxiliar class
+// contains methods for returnin string data with "'" character escaped for SQL
 class Movie {
 	public int year;
 	public String title;

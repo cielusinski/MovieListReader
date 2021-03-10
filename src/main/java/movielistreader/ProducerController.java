@@ -20,9 +20,11 @@ public class ProducerController {
 	@GetMapping("/producers")
 	public ResponseEntity<JSONObject> getProducersInterval() {
 		try {
+			// retrieve data from DB
 			ArrayList<JSONObject> data = DataBaseAccess.getWinnerYearProducers();
 			ArrayList<ProducerInterval> intervals = new ArrayList<ProducerInterval>();
 			
+			// process data for return
 			String lastName = null;
 			int previousWin = 0;
 			int smallestInterval = Integer.MAX_VALUE;
@@ -57,9 +59,11 @@ public class ProducerController {
 			final int smallestFilter = smallestInterval;
 			final int biggestFilter = biggestInterval;
 			
+			// filter data only for those with smallest and biggest interval
 			CollectionUtils.filter(intervals, pi -> ((ProducerInterval) pi).interval == smallestFilter || ((ProducerInterval) pi).interval == biggestFilter);
 			JSONArray min = new JSONArray();
 			JSONArray max = new JSONArray();
+			// arrange objects within the correct array
 			intervals.forEach(pi -> {
 				JSONObject interval = new JSONObject();
 				interval.put("producer", pi.name);
@@ -74,6 +78,7 @@ public class ProducerController {
 				}
 			});
 			
+			// set data for return
 			JSONObject returnObject = new JSONObject();
 			returnObject.put("min", min);
 			returnObject.put("max", max);

@@ -40,6 +40,7 @@ public class DataBaseAccess {
 				+ " CONSTRAINT movieProducerId UNIQUE (movieId, producerId));");
 	}
 	
+	// insert/update movie with the given data
 	public static void insertMovie(int year, String title, String studios, boolean winner) throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
@@ -48,6 +49,7 @@ public class DataBaseAccess {
 		stm.executeUpdate(String.format("MERGE INTO movie (id, year, title, studios, winner) VALUES(%1$s, %2$s, '%3$s', '%4$s', %5$s)", movieId == 0 ? "NULL" : movieId, year, title, studios, winner ? 1 : 0));
 	}
 	
+	// retrieves movie id given movie title and year
 	public static int getMovieId(String title, int year) throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
@@ -61,6 +63,7 @@ public class DataBaseAccess {
 		return movieId;
 	}
 	
+	// insert nonexisting producers
 	public static void insertProducer(String name) throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
@@ -71,6 +74,7 @@ public class DataBaseAccess {
 		}
 	}
 	
+	// retrieves producer id given name
 	public static int getProducerId(String name) throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
@@ -84,6 +88,7 @@ public class DataBaseAccess {
 		return producerId;
 	}
 
+	// insert relational table for movies' producers
 	public static void insertMovieProducer(int movieId, int producerId) throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
@@ -95,6 +100,7 @@ public class DataBaseAccess {
 	}
 	
 	@SuppressWarnings("unchecked")
+	// retrieves producer's name and year from movies that won the Golden Raspberry Award
 	public static ArrayList<JSONObject> getWinnerYearProducers() throws SQLException {
 		Connection conn = DriverManager.getConnection(dbUrl);
 		Statement stm = conn.createStatement();
