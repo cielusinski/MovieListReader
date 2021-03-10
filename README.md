@@ -21,7 +21,7 @@ The data will be returned in a JSON format, including the following values:
 - min: a JSON array containing objects with the producers with the closest consecutive winning;
 - max: a JSON array containing objects with the producers with the farest consecutive winning
 
-The object within the array will have the following structure:
+The objects within the array will have the following structure:
 - producer: the producer's name;
 - interval: the interval in year between the awards;
 - previousWin: the year where the producer won the first previous award;
